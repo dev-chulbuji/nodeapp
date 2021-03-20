@@ -1,30 +1,30 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeapp-2
+  name: nodeapp-3
 spec:
   ports:
   - port: 3000
     targetPort: 3000
   selector:
-    role: nodeapp-2
+    role: nodeapp-3
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp-2
+  name: nodeapp-3
 spec:
   replicas: 1
   selector:
     matchLabels:
-      role: nodeapp-2
+      role: nodeapp-3
   template:
     metadata:
       labels:
-        role: nodeapp-2
+        role: nodeapp-3
     spec:
       containers:
-      - name: nodeapp-2
+      - name: nodeapp-3
         image: 038030846741.dkr.ecr.ap-northeast-2.amazonaws.com/nodeapp:0.0.2
         imagePullPolicy: Always
         ports:
