@@ -4,7 +4,7 @@ ECR_URL := 038030846741.dkr.ecr.ap-northeast-2.amazonaws.com/nodeapp
 SRC_DIR := ./src
 
 run:
-	cd ${SRC_DIR}; npm start;
+	export APP_VERSION=${NODEAPP_VERSION}; cd ${SRC_DIR}; npm start;
 
 build:
 	docker build -t $(ECR_URL):$(NODEAPP_VERSION) ${SRC_DIR}
