@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "nodeapp.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "nodeapp.selectorLabels" . | nindent 6 }}
@@ -39,7 +37,7 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: {{ .Values.livenessProbe.path }}
               port: http
           readinessProbe:
             httpGet:

@@ -10,44 +10,24 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+livenessProbe:
+  path: /healthz
+
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  annotations: {
+    eks.amazonaws.com/role-arn: arn:aws:iam::038030846741:role/lab-ct-global-nodeapp-role
+  }
+  name: "nodeapp"
 
 podAnnotations: {}
-
 podSecurityContext: {}
-  # fsGroup: 2000
-
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  targetPort: 3000
+  port: 3000
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -60,13 +40,6 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
