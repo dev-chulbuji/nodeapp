@@ -37,7 +37,7 @@ spec:
               value: {{ .Values.image.tag | default .Chart.AppVersion }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           # livenessProbe:
           #   httpGet:
