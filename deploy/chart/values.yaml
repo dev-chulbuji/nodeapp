@@ -11,6 +11,10 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+readinessProbe:
+  path: /healthz
+  port: 3000
+
 livenessProbe:
   path: /healthz
   port: 3000
