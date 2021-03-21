@@ -1,3 +1,4 @@
+namespace: dj
 replicaCount: 1
 
 image:
